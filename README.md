@@ -47,12 +47,16 @@ exports.mongoose = {
 exports.mongoose = {
   url: 'mongodb://127.0.0.1/example',
   options: {},
+  // mongoose global plugins, expected a function or an array of function and options
+  plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
 };
 // recommended
 exports.mongoose = {
   client: {
     url: 'mongodb://127.0.0.1/example',
     options: {},
+    // mongoose global plugins, expected a function or an array of function and options
+    plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
   },
 };
 ```
@@ -110,8 +114,8 @@ module.exports = app => {
   const conn = app.mongooseDB.get('db1'); 
 
   const UserSchema = new Schema({
-    userName: { type: String  },
-    password: { type: String  },
+    userName: { type: String },
+    password: { type: String },
   });
 
   return conn.model('User', UserSchema);

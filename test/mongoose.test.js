@@ -67,9 +67,9 @@ describe('test/mongoose.test.js', () => {
       app.mockCsrf();
 
       yield request(app.callback())
-      .post('/books')
-      .send({ name: 'mongoose' })
-      .expect(200);
+        .post('/books')
+        .send({ name: 'mongoose' })
+        .expect(200);
 
       const res = yield request(app.callback()).get('/books');
       assert(res.body[0].name === 'mongoose');
@@ -78,6 +78,13 @@ describe('test/mongoose.test.js', () => {
     it('should load promise', function* () {
       const query = app.model.User.findOne({});
       assert.equal(query.exec().constructor, Promise);
+    });
+
+    it('should filter password of url', () => {
+      const filterURLPassword = require('../lib/filterURLPassword');
+      assert(filterURLPassword('https://example.com/') === 'https://example.com/');
+      assert(filterURLPassword('https://abc:xyz@example.com/') === 'https://abc:******@example.com/');
+      assert(filterURLPassword('mongodb://abc:xyz@mongodb0.example.com:27017,mongodb1.example.com:27017,mongodb2.example.com:27017/admin?replicaSet=myRepl') === 'mongodb://abc:******@mongodb0.example.com:27017,mongodb1.example.com:27017,mongodb2.example.com:27017/admin?replicaSet=myRepl');
     });
   });
 
@@ -253,6 +260,36 @@ describe('test/mongoose.test.js', () => {
         return;
       }
       assert.fail('shall not succeeded');
+    });
+  });
+
+  describe('global plugins', () => {
+    let app;
+    before(function* () {
+      app = mm.app({
+        baseDir: 'apps/mongoose-plugin',
+      });
+      yield app.ready();
+    });
+
+    after(function* () {
+      yield app.close();
+    });
+    afterEach(mm.restore);
+    afterEach(function* () {
+      yield app.model.Book.remove({});
+      yield app.model.User.remove({});
+    });
+
+    it('should has model extra property', function* () {
+      const user = yield app.model.User.create({});
+      const book = yield app.model.Book.create({});
+      assert(user);
+      assert(user.lastMod instanceof Date);
+      assert(user.updatedAt instanceof Date);
+      assert(book);
+      assert(book.lastMod instanceof Date);
+      assert(book.updatedAt instanceof Date);
     });
   });
 });

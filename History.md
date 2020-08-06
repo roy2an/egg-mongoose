@@ -1,4 +1,34 @@
 
+3.2.0 / 2019-05-16
+==================
+
+**features**
+  * [[`1f450fb`](http://github.com/eggjs/egg-mongoose/commit/1f450fb38acf4f04a63294a33e392c6f38830a88)] - feat: support mongoose global plugin (#35) (lkspc <<lkspc@qq.com>>)
+
+3.1.3 / 2019-05-06
+==================
+
+**fixes**
+  * [[`5b9f8ba`](http://github.com/eggjs/egg-mongoose/commit/5b9f8ba36673ea4b807b7cd97f4288bbef6c8f2d)] - fix: replace auth with string replace (#34) (TZ | 天猪 <<atian25@qq.com>>)
+
+3.1.2 / 2019-05-05
+==================
+
+**fixes**
+  * [[`441b6fc`](http://github.com/eggjs/egg-mongoose/commit/441b6fcf0264fec76415e682e5b180ecc6488799)] - fix: hide password of mongo url (#32) (CHANG, TZU-YEN <<try_love_tom@icloud.com>>)
+
+**others**
+  * [[`0c15d08`](http://github.com/eggjs/egg-mongoose/commit/0c15d0887f7d171858a3adc1ba6356d6b04c06a1)] - Update Dependencies And Lint Code (#33) (CHANG, TZU-YEN <<try_love_tom@icloud.com>>)
+
+3.1.1 / 2018-11-05
+==================
+
+**fixes**
+  * [[`de7e54e`](http://github.com/eggjs/egg-mongoose/commit/de7e54e21c1ca1848968395b236151255e404a11)] - fix(typescript): types of mongoose should be dependencies (#24) (Baffin Lee <<baffinlee@gmail.com>>)
+
+**others**
+  * [[`8bb46d5`](http://github.com/eggjs/egg-mongoose/commit/8bb46d5e7f2d2769989cbf42ad3f07f40cf3d661)] - chore: Add an arg in options for the update of mongodb (#29) (Maledong <<maledong_github@outlook.com>>)
+
 3.1.0 / 2018-07-03
 ==================
 
